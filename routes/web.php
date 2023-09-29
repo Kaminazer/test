@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Post\IndexController as AdminController;
 use App\Http\Controllers\Post\CreateController;
 use App\Http\Controllers\Post\DestroyController;
 use App\Http\Controllers\Post\EditController;
@@ -7,7 +8,6 @@ use App\Http\Controllers\Post\IndexController;
 use App\Http\Controllers\Post\ShowController;
 use App\Http\Controllers\Post\StoreController;
 use App\Http\Controllers\Post\UpdateController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -24,10 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('layouts.admin');
 });
 
-Route::get('/home', [UsersController::class, 'home'])-> name('users.home');
+Route::get('/home', AdminController::class)-> name('admin.post.index');
 Route::get('/about', [UsersController::class, 'about'])-> name('users.about');
 Route::get('/contacts', [UsersController::class, 'contacts'])-> name('users.contacts');
 

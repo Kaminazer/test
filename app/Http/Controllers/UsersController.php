@@ -15,7 +15,7 @@ class UsersController extends Controller
             "password" => "test",
         ]);
     }
-    
+
     public function update()
     {
         $user = User::find(1);
@@ -25,7 +25,7 @@ class UsersController extends Controller
             "password" => "test",
         ]);
     }
-    
+
     public function delete()
     {
         $user = User::find(11);
@@ -70,7 +70,7 @@ class UsersController extends Controller
     }
     public function home()
     {
-        return view('welcome');
+        return view('admin.post');
     }
     public function contacts()
     {
