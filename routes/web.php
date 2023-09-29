@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Post\CreateController;
+use App\Http\Controllers\Post\DestroyController;
+use App\Http\Controllers\Post\EditController;
+use App\Http\Controllers\Post\IndexController;
+use App\Http\Controllers\Post\ShowController;
+use App\Http\Controllers\Post\StoreController;
+use App\Http\Controllers\Post\UpdateController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
@@ -20,28 +27,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacts', function () {
-    return view('contacts');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-
 Route::get('/home', [UsersController::class, 'home'])-> name('users.home');
 Route::get('/about', [UsersController::class, 'about'])-> name('users.about');
 Route::get('/contacts', [UsersController::class, 'contacts'])-> name('users.contacts');
 
-Route::get('/posts', [PostController::class, 'index'])-> name('posts.index');
+Route::get('/posts', IndexController::class)-> name('posts.index');
 
-Route::get('/posts/create', [PostController::class, 'create'])-> name('posts.create');
-Route::post('/posts', [PostController::class, 'store'])-> name('posts.store');
+Route::get('/posts/create', CreateController::class)-> name('posts.create');
+Route::post('/posts', StoreController::class)-> name('posts.store');
 
-Route::get('/posts/{post}', [PostController::class, 'show'])-> name('posts.show');
+Route::get('/posts/{post}', ShowController::class)-> name('posts.show');
 
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])-> name('posts.edit');
-Route::patch('/posts/{post}', [PostController::class, 'update'])-> name('posts.update');
+Route::get('/posts/{post}/edit', EditController::class)-> name('posts.edit');
+Route::patch('/posts/{post}', UpdateController::class)-> name('posts.update');
 
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])-> name('posts.destroy');
+Route::delete('/posts/{post}', DestroyController::class)-> name('posts.destroy');
 
 
 
