@@ -24,10 +24,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts.admin');
-});
+    return view('welcome');
+})->name('welcome');
 
-Route::get('/home', AdminController::class)-> name('admin.post.index');
+Route::get('/home', AdminController::class)->middleware('admin')-> name('admin.post.index');
 Route::get('/about', [UsersController::class, 'about'])-> name('users.about');
 Route::get('/contacts', [UsersController::class, 'contacts'])-> name('users.contacts');
 
@@ -42,29 +42,6 @@ Route::get('/posts/{post}/edit', EditController::class)-> name('posts.edit');
 Route::patch('/posts/{post}', UpdateController::class)-> name('posts.update');
 
 Route::delete('/posts/{post}', DestroyController::class)-> name('posts.destroy');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
